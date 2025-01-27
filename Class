@@ -1,0 +1,47 @@
+from typing import Self 
+
+class Car:
+    def __init__(self): 
+        pass # for creating empty class 
+
+
+bmw = Car()
+
+# print(bmw)
+
+
+class Automobile:
+    def __init__(self, type: str) -> None:  #you can't retun here for initialiser
+        self.type = type 
+
+    # def __whoIAm__(self) -> str: 
+    #     return f'my self {self.type}' #use only already existing dunder method
+
+    def __str__(self):
+        return f'my self {self.type}'
+    
+    def drive(self) -> None: 
+        print(f'I am driving {self.type}')
+        # Using print statement in method print as follow 
+        # I am driving bmw
+        # None 
+        # So method print implicit None so better use return the str instead of print 
+
+    def isDriving(self, myname: str) -> str:
+        # return 'is drving by : {self.myname}' invalid return statement
+        return 'is driving by ' + myname
+    
+    def __add__(self, Other: Self) -> str:
+        return f'{self.type} other car {Self.type}'
+    
+
+myCar = Automobile(type='bmw')
+print(myCar.type)
+print(myCar.drive()) ## this will print two print state or call directly myCar.drive()
+myCar.drive()
+print(myCar.isDriving('venkat'))
+
+print(myCar) # without using dunder method we get this result <__main__.Automobile object at 0x100a97f70>
+myCar2 = Automobile(type='bmw')
+
+myCar.__add__(myCar2)
